@@ -1,5 +1,7 @@
 # Black Jack Mais top do mundo.
 
+import random
+
 baralho_valores = {2:2,
            3:3,
            4:4,
@@ -29,7 +31,7 @@ print('REGRAS (basicas):\n'
       'O jogo é jogado com um (ou mais baralhos de 52 cartas). Para isso as cartas têm a seguinte pontuação:\n'
       '•Cartas com números,valem o valor impresso nelas (cartas de 2 a 10)\n'
       '•Cartas de faces (Valete, Dama, Rei) valem 10 pontos.\n'
-      '•O Ás pode valer tanto 1 ou 11 pontosO computador deverá fazer o papel do croupier.')
+      '•O Ás pode valer tanto 1 ou 11 pontos O computador irá fazer o papel do croupier.')
 
 
 print('---------------------------------------------------------')
@@ -40,9 +42,29 @@ print('---------------------------------------------------------')
 quant_baralhos = int(input('quantos baralhos você vai querer usar? '))
 deck = baralho_quant*quant_baralhos
 
+    
+    
+
 JOGO = True
 dinheiro = 150
 pontos_jogador = 0
+
+    
+cartas = random.sample(deck,2)
+    
+cru_car = random.sample(deck,2)
+print('Essa é a carta do crupier {0}' .format(cru_car[0]))
+   
+print('Essas são suas cartas {0}' .format(cartas))
+
+    
+for e in cartas:
+    if e in baralho_valores:
+        pontos_jogador += baralho_valores[e]
+print('Isso é quantidade de pontos que você tem: {0}' .format(pontos_jogador))
+print('Suas opções são:    PARAR    ou   CARTA')
+
+    
 
 
 
