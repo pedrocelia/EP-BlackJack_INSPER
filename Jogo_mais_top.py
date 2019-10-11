@@ -45,9 +45,20 @@ deck = baralho_quant*quant_baralhos
 
 
 JOGO = True
-dinheiro = 150
+
+aposta = int(input("Quanto deseja apostar?"))
+dinheiro = 150 - aposta
 pontos_jogador = 0
 pontos_crupier = 0
+
+
+
+
+
+
+
+
+
     
 cartas = random.sample(deck,2)
 deck.remove(cartas[0])
@@ -93,13 +104,69 @@ while pontos_jogador < 21:
                 pontos_jogador += baralho_valores[e]
                 print("Essa é a sua pontuação agora: ", pontos_jogador)
 
-#                
-#if pontos_jogador > 21 and :
-#    print("HEY LOSER")
-#elif pontos_jogador == 21:
-#    print("BLACKJACK!! Você ganhou")
-#
-#        
+# não altera o dinheiro                
+if pontos_jogador > 21 and pontos_crupier > 21:
+    print("Ninguém ganha nada")
+    dinheiro += aposta
+ 
+# não altera o dinheiro
+elif pontos_jogador == 21 and pontos_crupier == 21:
+    print("Ninguém ganha nada")
+    dinheiro += aposta
+    
+# Dinheiro = 2X o valor apostado     
+elif pontos_jogador < 21 and pontos_crupier > 21:
+    print("Parabéns, você ganhou!!")
+    dinheiro += 2 * aposta
+    
+#Dinheiro = - aposta
+elif pontos_crupier < 21 and pontos_jogador > 21:
+    print("Você perdeu")
+    dinheiro = dinheiro
+    
+# Dinheiro = 2.5X aposta
+elif pontos_jogador == 21 and pontos_crupier != 21:
+    print("BLACKJACK!!")
+    dinheiro += 2.5 * aposta
+
+# Dinheiro = -2.5 x aposta    
+elif pontos_crupier == 21 and pontos_jogador != 21:
+    print("BLACKJACK do crupier!!")
+    dinheiro -= 1.5 * aposta
+
+# Dinheiro = 2 x aposta
+elif pontos_jogador > pontos_crupier:
+    print("Você ganhou!")
+    dinheiro += 2 * aposta
+
+# Dinheiro = -2 x aposta    
+else:
+    print("Você perdeu")
+    dinheiro = dinheiro
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       
 
 
 
