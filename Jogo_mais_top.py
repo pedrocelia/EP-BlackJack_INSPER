@@ -66,25 +66,20 @@ for e in cartas:
     if e in baralho_valores:
         pontos_jogador += baralho_valores[e]
 print('Isso é quantidade de pontos que você tem: {0}' .format(pontos_jogador))
-opcao = input('Suas opções são:    PARAR    ou   CARTA, escolha: ')
-
-if opcao == "CARTA":
-    cartas = random.sample(deck,1)
-    print("Essa é a sua carta{0}".format(cartas))
-    for e in cartas:
-        if e in baralho_valores:
-            pontos_jogador += baralho_valores[e]
-            print("Essa é a sua pontuação agora: ", pontos_jogador)
-            if pontos_jogador > 21:
-                print("Infelizmente você estourou, PERDEUUUU")
-            else:
-                
-    
-    
-    
 
 
+# pontos_jogador > 50:
+#    opcao = input('Suas opções são:    PARAR    ou   CARTA, escolha: ')
 
+while pontos_jogador < 21:
+    opcao = input('Suas opções são:    PARAR    ou   CARTA, escolha: ')
+    if opcao == "CARTA":
+        cartas = random.sample(deck,1)
+        print("Essa é a sua carta{0}".format(cartas))
+        for e in cartas:
+            if e in baralho_valores:
+                pontos_jogador += baralho_valores[e]
+                print("Essa é a sua pontuação agora: ", pontos_jogador)
 
     
 
