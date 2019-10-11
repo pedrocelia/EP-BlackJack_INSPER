@@ -42,8 +42,7 @@ print('---------------------------------------------------------')
 quant_baralhos = int(input('quantos baralhos você vai querer usar? '))
 deck = baralho_quant*quant_baralhos
 
-    
-    
+
 
 JOGO = True
 dinheiro = 150
@@ -51,9 +50,14 @@ pontos_jogador = 0
 
     
 cartas = random.sample(deck,2)
-    
+deck.remove(cartas[0])
+deck.remove(cartas[1])
+
 cru_car = random.sample(deck,2)
+deck.remove(cru_car[0])
+
 print('Essa é a carta do crupier {0}' .format(cru_car[0]))
+
    
 print('Essas são suas cartas {0}' .format(cartas))
 
@@ -62,7 +66,15 @@ for e in cartas:
     if e in baralho_valores:
         pontos_jogador += baralho_valores[e]
 print('Isso é quantidade de pontos que você tem: {0}' .format(pontos_jogador))
-print('Suas opções são:    PARAR    ou   CARTA')
+opcao = input('Suas opções são:    PARAR    ou   CARTA, escolha: ')
+
+
+    
+    
+    
+
+
+
 
     
 
