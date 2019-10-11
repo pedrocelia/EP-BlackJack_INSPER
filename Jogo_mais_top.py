@@ -86,10 +86,11 @@ while JOGO:
         if e in baralho_valores:
             if e == 'A':
                 if pontos_jogador + 11 > 21:
-                    pontos_jogador += baralho_valores[e[0]]
+                    pontos_jogador += baralho_valores[e][0]
                 else:
-                    pontos_jogador += baralho_valores[e[1]]
-            pontos_jogador += baralho_valores[e]    
+                    pontos_jogador += baralho_valores[e][1]
+            else:
+                pontos_jogador += baralho_valores[e]    
     print('Isso é quantidade de pontos que você tem: {0}' .format(pontos_jogador))
     
     
