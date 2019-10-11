@@ -93,7 +93,13 @@ while pontos_jogador < 21:
                 pontos_jogador += baralho_valores[e]
                 print("Essa é a sua pontuação agora: ", pontos_jogador)
 
-    
+#                
+#if pontos_jogador > 21 and :
+#    print("HEY LOSER")
+#elif pontos_jogador == 21:
+#    print("BLACKJACK!! Você ganhou")
+#
+#        
 
 
 
