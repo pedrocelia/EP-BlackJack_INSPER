@@ -48,10 +48,17 @@ JOGO = True
 
 
 while JOGO:
+    resultado = 0
     aposta = int(input("Quanto deseja apostar?"))
-    dinheiro = 150 - aposta
+    dinheiro = 150 + resultado
+    while dinheiro - aposta < 0:
+        print("Aposta invalida")
+        aposta = int(input("Digite um novo valor de aposta: "))
+        if dinheiro - aposta > 0:
+            break
     pontos_jogador = 0
     pontos_crupier = 0
+    print("Essa é a sua quantia agora: {0}R$".format(dinheiro))
     
     
     
@@ -79,7 +86,7 @@ while JOGO:
         if e in baralho_valores:
             if e == 'A':
                 if pontos_jogador + 11 > 21:
-                    pontos_jogador+=baralho_valores[e[0]]
+                    pontos_jogador += baralho_valores[e[0]]
                 else:
                     pontos_jogador += baralho_valores[e[1]]
             pontos_jogador += baralho_valores[e]    
@@ -108,45 +115,46 @@ while JOGO:
         if opcao == "PARAR":
             break
     
-    # não altera o dinheiro                
-    if pontos_jogador > 21 and pontos_crupier > 21:
-        print("Ninguém ganha nada")
-        dinheiro += aposta
+#PARA MULTIPLAYER    
+#não altera o dinheiro                
+#    if pontos_jogador > 21 and pontos_crupier > 21:
+#        print("Ninguém ganha nada")
+#        dinheiro += aposta
      
     # não altera o dinheiro
-    elif pontos_jogador == 21 and pontos_crupier == 21:
+    if pontos_jogador == 21 and pontos_crupier == 21:
         print("Ninguém ganha nada")
-        dinheiro += aposta
+        resultado = 0
         
     # Dinheiro = 2X o valor apostado     
     elif pontos_jogador < 21 and pontos_crupier > 21:
         print("Parabéns, você ganhou!!")
-        dinheiro += 2 * aposta
+        resultado +=  aposta
         
     #Dinheiro = - aposta
     elif pontos_crupier < 21 and pontos_jogador > 21:
         print("Você perdeu")
-        dinheiro = dinheiro
+        resultado -= aposta
         
     # Dinheiro = 2.5X aposta
     elif pontos_jogador == 21 and pontos_crupier != 21:
         print("BLACKJACK!!")
-        dinheiro += 2.5 * aposta
+        resultado += 1.5 * aposta
     
     # Dinheiro = -2.5 x aposta    
     elif pontos_crupier == 21 and pontos_jogador != 21:
         print("BLACKJACK do crupier!!")
-        dinheiro -= 1.5 * aposta
+        resultado -= 1.5 * aposta
     
     # Dinheiro = 2 x aposta
     elif pontos_jogador > pontos_crupier:
         print("Você ganhou!")
-        dinheiro += 2 * aposta
+        resultado +=  aposta
     
     # Dinheiro = -2 x aposta    
     else:
         print("Você perdeu")
-        dinheiro = dinheiro
+        resultado -= aposta
     
     
     if dinheiro == 0:
