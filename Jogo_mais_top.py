@@ -47,7 +47,7 @@ deck = baralho_quant*quant_baralhos
 JOGO = True
 dinheiro = 150
 pontos_jogador = 0
-
+pontos_crupier = 0
     
 cartas = random.sample(deck,2)
 deck.remove(cartas[0])
@@ -64,12 +64,24 @@ print('Essas são suas cartas {0}' .format(cartas))
     
 for e in cartas:
     if e in baralho_valores:
-        pontos_jogador += baralho_valores[e]
+        if e == 'A':
+            if pontos_jogador + 11 > 21:
+                pontos_jogador+=baralho_valores[e[0]]
+            else:
+                pontos_jogador += baralho_valores[e[1]]
+        pontos_jogador += baralho_valores[e]    
 print('Isso é quantidade de pontos que você tem: {0}' .format(pontos_jogador))
 
 
-# pontos_jogador > 50:
-#    opcao = input('Suas opções são:    PARAR    ou   CARTA, escolha: ')
+for c in cru_car:
+    if c in baralho_valores:
+        if e == 'A':
+            if pontos_crupier + 11 > 21:
+                    pontos_crupier+=baralho_valores[c[0]]
+            else:
+                pontos_crupier += baralho_valores[c[1]]
+        pontos_crupier += baralho_valores[c]
+
 
 while pontos_jogador < 21:
     opcao = input('Suas opções são:    PARAR    ou   CARTA, escolha: ')
