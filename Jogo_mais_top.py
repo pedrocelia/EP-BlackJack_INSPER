@@ -101,27 +101,34 @@ while JOGO:
 
     
     while pontos_jogador < 21:
-        opcao = input('Suas opções são:    PARAR    ou   CARTA, escolha: ')
-        op = opcao.lower() 
-        if op == "carta":
-            cartas = random.sample(deck,1)
-            deck.remove(cartas[0])
-            print("Essa é a sua carta{0}".format(cartas))
-            for j in cartas:
-                if j in baralho_valores:
-                    if j == 'A':
-                        if pontos_jogador + 11 > 21:
-                            pontos_jogador += baralho_valores[j][0]
+        if pontos_jogador / 2 == 10:
+            opcao = input("Suas opções são: SPLIT, CARTA ou PARAR, escolha: ")
+            op = opcao.lower()
+            if op == "split":
+                mao_1 = cartas[0]
+                mao_2 = cartas[1]
+        else:
+            opcao = input('Suas opções são:    PARAR    ou   CARTA, escolha: ')
+            op = opcao.lower() 
+            if op == "carta":
+                cartas = random.sample(deck,1)
+                deck.remove(cartas[0])
+                print("Essa é a sua carta{0}".format(cartas))
+                for j in cartas:
+                    if j in baralho_valores:
+                        if j == 'A':
+                            if pontos_jogador + 11 > 21:
+                                pontos_jogador += baralho_valores[j][0]
+                            else:
+                                pontos_jogador += baralho_valores[j][1]
                         else:
-                            pontos_jogador += baralho_valores[j][1]
-                    else:
-                        pontos_jogador += baralho_valores[j]
-                    print("Essa é a sua pontuação agora: ", pontos_jogador)
-        if op == "parar":
-            break
+                            pontos_jogador += baralho_valores[j]
+                        print("Essa é a sua pontuação agora: ", pontos_jogador)
+            if op == "parar":
+                break
     if pontos_jogador<=21:
         if pontos_crupier < pontos_jogador:    
-            while pontos_crupier<21:
+            while pontos_crupier < 17:
                 cru_car = random.sample(deck,1)
                 deck.remove(cru_car[0])
                 for k in cru_car:
