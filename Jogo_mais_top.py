@@ -49,11 +49,12 @@ deck = baralho_quant*quant_baralhos
 
 
 JOGO = True
-resultado = 0
+dinheiro=150
+
 
 while JOGO:
+    resultado = 0
     aposta = int(input("Quanto deseja apostar? "))
-    dinheiro = 150 + resultado
     while dinheiro - aposta < 0:
         print("Aposta invalida")
         aposta = int(input("Digite um novo valor de aposta: "))
@@ -100,109 +101,112 @@ while JOGO:
                 pontos_crupier += baralho_valores[c]
 
     
-    while pontos_jogador < 21:
-        if pontos_jogador / 2 == 10:
-            opcao = input("Suas opções são: SPLIT, CARTA ou PARAR, escolha: ")
-            op = opcao.lower()
-            if op == "split":
-                mao_1 = cartas[0]
-                mao_2 = cartas[1]
-        else:
-            opcao = input('Suas opções são:    PARAR    ou   CARTA, escolha: ')
-            op = opcao.lower() 
-            if op == "carta":
-                cartas = random.sample(deck,1)
-                deck.remove(cartas[0])
-                print("Essa é a sua carta{0}".format(cartas))
-                for j in cartas:
-                    if j in baralho_valores:
-                        if j == 'A':
-                            if pontos_jogador + 11 > 21:
-                                pontos_jogador += baralho_valores[j][0]
-                            else:
-                                pontos_jogador += baralho_valores[j][1]
+    while pontos_jogador < 21 :
+        print('')
+        print('se digitar FIM o jogo acaba!')
+        opcao = input('Suas opções são:    PARAR    ou   CARTA, escolha: ')
+        op = opcao.lower() 
+        if op == "carta":
+            cartas = random.sample(deck,1)
+            deck.remove(cartas[0])
+            print("Essa é a sua carta{0}".format(cartas))
+            for j in cartas:
+                if j in baralho_valores:
+                    if j == 'A':
+                        if pontos_jogador + 11 > 21:
+                            pontos_jogador += baralho_valores[j][0]
                         else:
-                            pontos_jogador += baralho_valores[j]
-                        print("Essa é a sua pontuação agora: ", pontos_jogador)
-            if op == "parar":
-                break
-    if pontos_jogador<=21:
-        if pontos_crupier < pontos_jogador:    
-            while pontos_crupier < 17:
-                cru_car = random.sample(deck,1)
-                deck.remove(cru_car[0])
-                for k in cru_car:
-                    if k in baralho_valores:
-                        if k == 'A':
-                            if pontos_crupier + 11 > 21:
-                                pontos_crupier += baralho_valores[k][0]
-                            else:
-                                pontos_crupier += baralho_valores[k][1]
+                            pontos_jogador += baralho_valores[j][1]
+                    else:
+                        pontos_jogador += baralho_valores[j]
+                    print("Essa é a sua pontuação agora: ", pontos_jogador)
+        if op == "parar":
+            break
+        if op == 'fim':
+            JOGO = False
+            break
+            
+    if pontos_jogador<=21 and JOGO:
+        while pontos_crupier < 17:
+            cru_car = random.sample(deck,1)
+            deck.remove(cru_car[0])
+            for k in cru_car:
+                if k in baralho_valores:
+                    if k == 'A':
+                        if pontos_crupier + 11 > 21:
+                            pontos_crupier += baralho_valores[k][0]
                         else:
-                            pontos_crupier += baralho_valores[k]                            
-                        if pontos_crupier == 21:
-                            break
-    
+                            pontos_crupier += baralho_valores[k][1]
+                    else:
+                        pontos_crupier += baralho_valores[k]                            
+                    if pontos_crupier == 21:
+                        break
+
 #PARA MULTIPLAYER    
 #não altera o dinheiro                
 #    if pontos_jogador > 21 and pontos_crupier > 21:
 #        print("Ninguém ganha nada")
 #        dinheiro += aposta
-     
+    if JOGO: 
     # não altera o dinheiro
-    if pontos_jogador == 21 and pontos_crupier == 21:
-        print("Ninguém ganha nada")
-        print('')
-        print('ambos fizeram Blackjack')
-        resultado = 0
+        if pontos_jogador == 21 and pontos_crupier == 21:
+            print("Ninguém ganha nada")
+            print('')
+            print('ambos fizeram Blackjack')
+            resultado = 0
+            
+            
+        # Dinheiro = 2X o valor apostado     
+        elif pontos_jogador < 21 and pontos_crupier > 21:
+            print("Parabéns, você ganhou!!")
+            print('')
+            print('o Crupier estourou com: {0}' .format(pontos_crupier))
+            resultado +=  aposta
+            
+        #Dinheiro = - aposta
+        elif pontos_crupier < 21 and pontos_jogador > 21:
+            print("Você perdeu")
+            print('')
+            print('Crupier fez {0} pontos' .format (pontos_crupier))
+            resultado -= aposta
+            
+        # Dinheiro = 2.5X aposta
+        elif pontos_jogador == 21 and pontos_crupier != 21:
+            print("BLACKJACK!! Parabéns, você ganhou essa rodada!")
+            print('')
+            print('Crupier estourou com: {}' .format(pontos_crupier))
+            resultado += 1.5 * aposta
         
-    # Dinheiro = 2X o valor apostado     
-    elif pontos_jogador < 21 and pontos_crupier > 21:
-        print("Parabéns, você ganhou!!")
-        print('')
-        print('o Crupier estourou com: {0}' .format(pontos_crupier))
-        resultado +=  aposta
+        # Dinheiro = -2.5 x aposta    
+        elif pontos_crupier == 21 and pontos_jogador != 21:
+            print("BLACKJACK do crupier!!")
+            resultado -= 1.5 * aposta
         
-    #Dinheiro = - aposta
-    elif pontos_crupier < 21 and pontos_jogador > 21:
-        print("Você perdeu")
-        print('')
-        print('Crupier fez {0} pontos' .format (pontos_crupier))
-        resultado -= aposta
+        # Dinheiro = 2 x aposta
+        elif pontos_jogador > pontos_crupier:
+            print("Você ganhou!")
+            print('')
+            print('Crupier fez {0} pontos' .format(pontos_crupier))
+            resultado +=  aposta
         
-    # Dinheiro = 2.5X aposta
-    elif pontos_jogador == 21 and pontos_crupier != 21:
-        print("BLACKJACK!! Parabéns, você ganhou essa rodada!")
-        print('')
-        print('Crupier estourou com: {}' .format(pontos_crupier))
-        resultado += 1.5 * aposta
+        # Dinheiro = -2 x aposta    
+        else:
+            print("Você perdeu")
+            print('')
+            print('Crupier fez {0} pontos' .format(pontos_crupier))
+            resultado -= aposta
+        
+        dinheiro = dinheiro + resultado
+        print( 'essa é a quantidade de agora: {0}' .format(dinheiro))
+        
     
-    # Dinheiro = -2.5 x aposta    
-    elif pontos_crupier == 21 and pontos_jogador != 21:
-        print("BLACKJACK do crupier!!")
-        resultado -= 1.5 * aposta
-    
-    # Dinheiro = 2 x aposta
-    elif pontos_jogador > pontos_crupier:
-        print("Você ganhou!")
-        print('')
-        print('Crupier fez {0} pontos' .format(pontos_crupier))
-        resultado +=  aposta
-    
-    # Dinheiro = -2 x aposta    
-    else:
-        print("Você perdeu")
-        print('')
-        print('Crupier fez {0} pontos' .format(pontos_crupier))
-        resultado -= aposta
-    
-    
-    if dinheiro == 0:
+    if dinheiro <= 0:
         JOGO = False
 
 
 
-
+print('Obrigado por jogar \n'
+      'Volte sempre!')
 
 
 
