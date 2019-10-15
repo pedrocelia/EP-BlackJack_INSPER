@@ -18,6 +18,22 @@ baralho_valores = {2:2,
 
 baralho_quant = [2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6,7,7,7,7,8,8,8,8,9,9,9,9,10,10,10,10,'J','J','J','J','Q','Q','Q','Q','K','K','K','K','A','A','A','A']
 
+
+PLAYERS={}
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
 nome=input('qual é o seu nome? ')
 
 print('---------------------------------------------------------')
@@ -46,7 +62,10 @@ print('')
 quant_baralhos = int(input('quantos baralhos você vai querer usar? '))
 deck = baralho_quant*quant_baralhos
 
+p = int(input('quantos jogadores: '))
 
+for x in range(1,p+1):
+    PLAYERS['P{0}' .format(x)] = [150,0]
 
 JOGO = True
 dinheiro=150
