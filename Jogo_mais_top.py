@@ -44,7 +44,7 @@ print('REGRAS (basicas):\n'
 print('---------------------------------------------------------')
 print('')
 time.sleep(2)
-init = input('vamos começar?')
+init = input('vamos começar? ')
 print('Cada jogador começa com 150 reais')
 print('---------------------------------------------------------')
 print('')
@@ -61,9 +61,6 @@ for x in range(1,p+1):
 
 JOGO = True
 dinheiro=150
-
-def soma_mao():
-    return
 
 while JOGO:
     for p,v in PLAYERS.items():
@@ -105,7 +102,7 @@ while JOGO:
               
         while pontos_jogador < 21 :
             print('')
-            print('se digitar FIM o jogo acaba!')
+            print('se qualquer player digitar FIM o jogo vai acabar acaba!')
             opcao = input('Suas opções são:    PARAR    ou   CARTA, escolha: ')
             op = opcao.lower()
             if op == "carta":
@@ -224,7 +221,7 @@ while JOGO:
                 resultado -= aposta
             casino -= resultado
             PLAYERS[s][0] = PLAYERS[s][0] + resultado
-            print('{1} essa é a quantidade de agora: {0}' .format(PLAYERS[s][0], s))
+            print('{1} essa é a quantidade de agora: R${0}' .format(PLAYERS[s][0], s))
    
     if PLAYERS[v][0] <= 0:
         JOGO = False 
@@ -232,6 +229,10 @@ while JOGO:
     if casino <= 0:
         print('parabéns voces quebraram o casino')
         JOGO = False
-        
-print('Obrigado por jogar \n'
+
+
+if casino > 0:       
+    print('Obrigado por jogar \n'
       'Volte(em) sempre!')
+else:
+    print('O casino ficará inativo por um tempo, mas muito obrigado por jogar')
