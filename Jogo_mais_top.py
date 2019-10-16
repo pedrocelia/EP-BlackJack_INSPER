@@ -21,7 +21,7 @@ baralho_quant = [2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6,7,7,7,7,8,8,8,8,9,9,9,9
 
 PLAYERS={}
 
-casino = 1
+casino = 1000
 
 print('---------------------------------------------------------')
 print('')
@@ -62,12 +62,14 @@ for x in range(1,p+1):
 JOGO = True
 dinheiro=150
 
+def soma_mao():
+    return
 
 while JOGO:
     for p,v in PLAYERS.items():
         pontos_jogador = 0
         aposta = float(input("{0} quanto deseja apostar? ".format(p)))
-        while v[0] - aposta < 0 and aposta < 0:
+        while v[0] - aposta < 0 or aposta < 0:
             print("Aposta invalida")
             aposta = float(input("Digite um novo valor de aposta: "))
             if v[0] - aposta > 0:
@@ -98,7 +100,7 @@ while JOGO:
                         pontos_jogador += baralho_valores[e][1]
                 else:
                     pontos_jogador += baralho_valores[e]
-#        pontos_jogador = soma_mao(cartas, baralho_valores)
+
         print('Isso é quantidade de pontos que você tem: {0}' .format(pontos_jogador))
               
         while pontos_jogador < 21 :
@@ -203,7 +205,7 @@ while JOGO:
             # Dinheiro = 2 x aposta
             elif pontos_jogador > pontos_crupier:
                 print('')
-                print("{0} ganhou!" .format(0))
+                print("{0} ganhou!" .format(s))
                 print('')
                 print('Crupier fez {0} pontos' .format(pontos_crupier))
                 resultado +=  aposta
@@ -222,7 +224,7 @@ while JOGO:
                 resultado -= aposta
             casino -= resultado
             PLAYERS[s][0] = PLAYERS[s][0] + resultado
-            print('essa é a quantidade de agora: {0}' .format(PLAYERS[s][0]))
+            print('{1} essa é a quantidade de agora: {0}' .format(PLAYERS[s][0], s))
    
     if PLAYERS[v][0] <= 0:
         JOGO = False 
