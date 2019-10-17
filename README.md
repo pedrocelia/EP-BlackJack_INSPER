@@ -8,7 +8,7 @@ Esse projeto consiste em um programa que simula um blackjack, conhecido como 21.
 
 As features são:
   - se digitar fim o jogo se encerra
-  - as vale 1 ou 11
+  - Ás vale 1 ou 11
   - quantidade de baralhos a escolha
   - multiplayer
   
