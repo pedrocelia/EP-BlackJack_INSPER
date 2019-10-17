@@ -12,4 +12,4 @@ As features são:
   - quantidade de baralhos a escolha
   - multiplayer
   
-A feature livre escolhida foi a de poder quebrar o casino, ou seja, os players tem a possibilidade de tirar tudo o dinheiro do casino. Por favor avalie o arquivo com o nome de "jogo_mais_top".
+A feature livre escolhida foi a de poder quebrar o casino, ou seja, os players tem a possibilidade de tirar todo o dinheiro do casino. Por favor avalie o arquivo com o nome de "jogo_mais_top".
